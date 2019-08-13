@@ -468,7 +468,7 @@ function newUtil() {
                 resolve(image);
             };
             image.onerror = reject;
-            image.src = uri;
+            image.src = encodeURI(uri);
         });
     }
 
