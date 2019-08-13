@@ -237,13 +237,7 @@ function cloneNode(node, filter, root) {
             copyStyle(window.getComputedStyle(original), clone.style);
 
             function copyStyle(source, target) {
-                if (source.cssText) {
-                    target.cssText = source.cssText;
-                    // console.log(source['font-size'])
-                    // console.log(source['font-weight'])
-                    // console.log(source['font-family'])
-                    // target.font = source.font;
-                }
+                if (source.cssText) target.cssText = source.cssText;
                 else copyProperties(source, target);
 
                 function copyProperties(source, target) {
@@ -322,7 +316,6 @@ function cloneNode(node, filter, root) {
 }
 
 function embedFonts(node) {
-    console.log("Embedding fonts...")
     const allFonts = fonts.fonts()
     var styleNode = document.createElement('style');
     node.appendChild(styleNode);
