@@ -322,6 +322,7 @@ function cloneNode(node, filter, root) {
 }
 
 function embedFonts(node) {
+    console.log("Embedding fonts...")
     const allFonts = fonts.fonts()
     var styleNode = document.createElement('style');
     node.appendChild(styleNode);
@@ -662,7 +663,6 @@ function newFontFaces() {
     };
 
     function resolveAll() {
-        console.log("Resolvendo")
         return readAll(document)
             .then(function (webFonts) {
                 return Promise.all(
@@ -672,7 +672,6 @@ function newFontFaces() {
                 );
             })
             .then(function (cssStrings) {
-                console.log("Printando")
                 return cssStrings.join('\n');
             });
     }
