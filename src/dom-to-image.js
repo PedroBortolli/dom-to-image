@@ -728,19 +728,22 @@ function newImages() {
 
         function inline(get) {
             if (util.isDataUrl(element.src)) return Promise.resolve();
-
-            return Promise.resolve(element.src)
-                .then(get || util.getAndEncode)
-                .then(function (data) {
-                    return util.dataAsUrl(data, util.mimeType(element.src));
-                })
-                .then(function (dataUrl) {
-                    return new Promise(function (resolve, reject) {
-                        element.onload = resolve;
-                        element.onerror = reject;
-                        element.src = dataUrl;
+            try {
+                const res = Promise.resolve(element.src)
+                    .then(get || util.getAndEncode)
+                    .then(function (data) {
+                        return util.dataAsUrl(data, util.mimeType(element.src));
+                    })
+                    .then(function (dataUrl) {
+                        return new Promise(function (resolve, reject) {
+                            element.onload = resolve;
+                            element.onerror = reject;
+                            element.src = dataUrl;
+                        });
                     });
-                });
+            } catch(e) {
+                return null
+            }
         }
     }
 
