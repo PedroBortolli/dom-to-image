@@ -560,7 +560,7 @@ function newUtil() {
     }
 
     function escapeXhtml(string) {
-        return string.replace(/#/g, '%23').replace(/\n/g, '%0A');
+        return string.replace(/#/g, '%23').replace(/\n/g, ' ');
     }
 
     function width(node) {
